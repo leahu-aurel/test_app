@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./components/navbar/navbar";
+import Books from "./components/books/books";
+import Shelves from "./components/shelves/shelves";
+import { Route, Switch } from "react-router-dom";
 
-function App() {
+export default () => {
   const [items, setItems] = useState([]);
   const [isFetching, setFetching] = useState(false);
   useEffect(() => {
@@ -18,11 +21,18 @@ function App() {
       .then((res) => res.json())
       .then((data) => console.log(data.items));
   }, []);
-  return (
-    <div className="App">
-      <NavBar />
-    </div>
-  );
-}
 
-export default App;
+  return (
+    <>
+      <NavBar />
+      <Switch>
+        <Route exact path="/(|books)">
+          <Books />
+        </Route>
+        <Route exact path="/shelves">
+          <Shelves />
+        </Route>
+      </Switch>
+    </>
+  );
+};

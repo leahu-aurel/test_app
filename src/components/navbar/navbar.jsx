@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -17,13 +18,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const pushTo = (link) => {
+    history.push(link);
+  };
   return (
     <AppBar className={classes.appBar} position="static">
       <Toolbar>
-        <Button color="inherit" className={classes.menuButton}>
+        <Button
+          onClick={() => pushTo("/books")}
+          color="inherit"
+          className={classes.menuButton}
+        >
           Books
         </Button>
-        <Button color="inherit">Shelves</Button>
+        <Button onClick={() => pushTo("/shelves")} color="inherit">
+          Shelves
+        </Button>
       </Toolbar>
     </AppBar>
   );
