@@ -23,9 +23,7 @@ export default () => {
   const [isFetching] = useItems(books);
   console.log(
     books.forEach((item) => {
-      const { id, volumeInfo } = item;
-      console.log(id);
-      console.log(volumeInfo);
+      console.log(item);
     })
   );
   return (
