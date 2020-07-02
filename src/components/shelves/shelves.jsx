@@ -8,7 +8,7 @@ import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import Shelf from "./shelf";
-export const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(6),
     display: "flex",
@@ -34,13 +34,12 @@ export const useStyles = makeStyles((theme) => ({
 export default () => {
   const classes = useStyles();
   const shelves = useSelector((state) => state.shelves);
-  console.log(shelves);
   return (
     <Container component="main" maxWidth="sm">
       <div className={classes.paper}>
-        {shelves.length ? (
+        {Object.values(shelves).length ? (
           <>
-            {shelves.map((shelf) => (
+            {Object.values(shelves).map((shelf) => (
               <Shelf key={shelf.id} {...shelf} />
             ))}
           </>

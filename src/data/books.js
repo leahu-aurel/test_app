@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-export const books = [
+const booksRef = [
   {
     id: v4(),
     title: "Harry Potter and the Philosopher's Stone",
@@ -101,3 +101,8 @@ export const books = [
     image: "https://m.media-amazon.com/images/I/515i-uCyljL.jpg",
   },
 ];
+
+export const books = booksRef.reduce((acc, cur) => {
+  acc[cur.id] = cur;
+  return acc;
+}, {});

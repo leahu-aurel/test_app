@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Card,
   CardActions,
@@ -19,6 +19,7 @@ import {
   DialogActions,
 } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
+import { addBookToShelf } from "../../redux/actions/actionCreators";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,8 +40,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default () => {
+  const { id } = useParams();
+  const classes = useStyles();
+  const book = useSelector((state) => state.books)[id];
+  const shelves = useSelector((state) => state.shelves);
+  console.log(shelves);
+  const { image, title, author, description, category, pages } = book;
   const [open, setOpen] = useState(false);
-
+  const dispatch = useDispatch();
   const handleOpen = () => {
     setOpen(true);
   };
@@ -48,11 +55,22 @@ export default () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const { id } = useParams();
-  const classes = useStyles();
-  const books = useSelector((state) => state.books);
-  const book = books.filter((bookRef) => bookRef.id === id)[0];
-  const { image, title, author, description, category, pages } = book;
+  const handleSubmit = () => {
+    console.log(chosenShelf);
+    if (chosenShelf) {
+      dispatch(addBookToShelf(chosenShelf, id));
+    } else {
+      alert("No shelves chosen");
+    }
+    setOpen(false);
+  };
+
+  const [chosenShelf, setShelf] = useState("");
+
+  const handleShelfChange = (e) => {
+    console.log(e.target.value);
+    setShelf(e.target.value);
+  };
 
   const body = (
     <div>
@@ -61,39 +79,47 @@ export default () => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">
-          Add this book to a shelf:
-        </DialogTitle>
-        <DialogContent>
-          <FormControl
-            margin="dense"
-            fullWidth
-            required
-            className={classes.formControl}
-          >
-            <InputLabel htmlFor="age-native-simple">Shelf</InputLabel>
-            <Select
-              native
-              value=""
-              inputProps={{
-                name: "age",
-                id: "age-native-simple",
-              }}
-            >
-              <option aria-label="None" value="" />
-              <option value={10}>One</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-            </Select>
-          </FormControl>
-        </DialogContent>
-        <DialogActions>
-          <Button color="primary">Cancel</Button>
-          <Button color="primary">Submit</Button>
-        </DialogActions>
+        {Object.values(shelves).length ? (
+          <>
+            <DialogTitle id="form-dialog-title">
+              Add this book to a shelf:
+            </DialogTitle>
+            <DialogContent>
+              <FormControl
+                margin="dense"
+                fullWidth
+                required
+                className={classes.formControl}
+              >
+                <InputLabel htmlFor="age-native-simple">Shelf</InputLabel>
+                <Select native value={chosenShelf} onChange={handleShelfChange}>
+                  <option aria-label="None" value="" />
+                  {Object.values(shelves).map((shelf) => (
+                    <option value={shelf.id} key={shelf.id}>
+                      {shelf.name}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            </DialogContent>
+            <DialogActions>
+              <Button color="primary" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button color="primary" onClick={handleSubmit}>
+                Submit
+              </Button>
+            </DialogActions>
+          </>
+        ) : (
+          <DialogTitle id="form-dialog-title">
+            There are no available shelves
+          </DialogTitle>
+        )}
       </Dialog>
     </div>
   );
+
   return (
     <Card className={classes.root}>
       <CardActionArea>

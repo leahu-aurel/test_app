@@ -8,8 +8,8 @@ import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import Typography from "@material-ui/core/Typography";
-import { useSelector } from "react-redux";
 import { Grid } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,13 +21,12 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default ({ name, categories }) => {
+export default ({ name, categories, books }) => {
   console.log(name);
-  console.log(categories);
   const classes = useStyles();
-  const shelves = useSelector((state) => state.shelves);
-  const books = ["Harry Potter", "smth else"];
-  console.log(shelves);
+  const booksState = useSelector((state) => state.books);
+  books = books.map((book) => booksState[book.id].name);
+  console.log(books);
   return (
     <Grid item xs={12} sm={6} className={classes.root}>
       <Card className={classes.root}>
@@ -38,11 +37,11 @@ export default ({ name, categories }) => {
               <Typography gutterBottom variant="h5" component="h2">
                 Books:
               </Typography>
-              {books.map((book) => (
+              {/* {books.map((book) => (
                 <Typography gutterBottom variant="h5" component="h2">
                   {book}
                 </Typography>
-              ))}
+              ))} */}
             </>
           ) : (
             <Typography variant="body2" color="textSecondary" component="p">

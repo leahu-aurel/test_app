@@ -84,7 +84,6 @@ export default () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [personName, setPersonName] = useState([]);
-  console.log(personName);
   const handleChange = (event) => {
     setPersonName(event.target.value);
   };

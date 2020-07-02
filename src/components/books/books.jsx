@@ -21,11 +21,7 @@ export default () => {
   const classes = useStyles();
   const books = useSelector((state) => state.books);
   const [isFetching] = useItems(books);
-  console.log(
-    books.forEach((item) => {
-      console.log(item);
-    })
-  );
+
   return (
     <div>
       {isFetching || !books ? (
@@ -39,7 +35,7 @@ export default () => {
           alignItems="center"
           spacing={2}
         >
-          {books.map((item) => (
+          {Object.values(books).map((item) => (
             <Book key={item.id} {...item} />
           ))}
         </Grid>
