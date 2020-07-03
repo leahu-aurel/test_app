@@ -10,12 +10,11 @@ export default (state = {}, { type, shelf, shelf_id, book_id, review }) => {
       return { ...state, [shelf.id]: shelf };
 
     case ADD_REVIEW_TO_SHELF:
-      const { reviews } = state[shelf_id];
       return {
         ...state,
         [shelf_id]: {
           ...state[shelf_id],
-          reviews: [...reviews, review],
+          reviews: [review, ...state[shelf_id].reviews],
         },
       };
 

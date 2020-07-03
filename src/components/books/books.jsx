@@ -7,7 +7,6 @@ import { Grid } from "@material-ui/core";
 export default () => {
   const books = useSelector((state) => state.books);
   useItems(books);
-
   return (
     <div>
       {!books ? (

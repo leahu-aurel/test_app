@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import AddReview from "../modals/addReview";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,13 +18,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default ({ name, categories, books, id }) => {
+export default ({ name, categories, books, id, reviews }) => {
   const classes = useStyles();
   const booksState = useSelector((state) => state.books);
   books = books.map((book) => ({
     id: book,
     title: booksState[book].title,
   }));
+  console.log(reviews);
   return (
     <Grid item xs={12} sm={12} md={12} className={classes.root}>
       <Card>
@@ -41,10 +43,34 @@ export default ({ name, categories, books, id }) => {
                   variant="h5"
                   component="h2"
                 >
-                  {book.title}
+                  <Link
+                    style={{ color: "black", textDecoration: "none" }}
+                    to={`/${book.id}`}
+                  >
+                    {book.title}
+                  </Link>
                 </Typography>
               ))}
               <AddReview type="shelf" id={id} />
+              {reviews && (
+                <>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Reviews:
+                  </Typography>
+                  {reviews.map((review) => (
+                    <>
+                      <Typography
+                        key={review.title}
+                        gutterBottom
+                        variant="h5"
+                        component="h2"
+                      >
+                        {review.title}
+                      </Typography>
+                    </>
+                  ))}
+                </>
+              )}
             </>
           ) : (
             <Typography variant="body2" color="textSecondary" component="p">

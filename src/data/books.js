@@ -103,6 +103,6 @@ const booksRef = [
 ];
 
 export const books = booksRef.reduce((acc, cur) => {
-  acc[cur.id] = cur;
+  acc[cur.id] = { ...cur, reviews: [] };
   return acc;
 }, {});

@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 export default () => {
   const classes = useStyles();
   const shelves = Object.values(useSelector((state) => state.shelves));
-  console.log(shelves);
   return (
     <Container component="main" maxWidth="sm">
       <div className={classes.paper}>

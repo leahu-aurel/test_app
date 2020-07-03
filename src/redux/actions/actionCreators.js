@@ -3,6 +3,7 @@ import {
   ADD_SHELF,
   ADD_BOOK_TO_SHELF,
   ADD_REVIEW_TO_SHELF,
+  ADD_REVIEW_TO_BOOK,
 } from "./actions";
 import { v4 } from "uuid";
 export const setBooks = (books) => ({
@@ -10,11 +11,15 @@ export const setBooks = (books) => ({
   books,
 });
 
-export const addReviewToBook = (review, rate, id) => ({
-  type: ADD_BOOK_TO_SHELF,
-  review: { review, rate },
-  id,
-});
+export const addReviewToBook = (review, rate, id) => {
+  console.log(review);
+  console.log(rate);
+  return {
+    type: ADD_REVIEW_TO_BOOK,
+    review: { review, rate },
+    id,
+  };
+};
 
 export const addShelf = (name, categories) => ({
   type: ADD_SHELF,

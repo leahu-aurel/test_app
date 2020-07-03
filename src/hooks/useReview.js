@@ -26,6 +26,7 @@ export default (type, id) => {
   const handleSubmit = () => {
     if (review && rate) {
       if (type === "book") {
+        console.log(type);
         dispatch(addReviewToBook(review, rate, id));
       } else {
         dispatch(addReviewToShelf(review, rate, id));

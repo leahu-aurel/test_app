@@ -9,7 +9,7 @@ export default (state = {}, { type, books, id, review }) => {
         ...state,
         [id]: {
           ...state[id],
-          reviews: [review],
+          reviews: [review, ...state[id].reviews],
         },
       };
 
