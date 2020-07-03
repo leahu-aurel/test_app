@@ -3,33 +3,26 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { useSelector } from "react-redux";
-
+import AddReview from "../modals/addReview";
 export const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "center",
-    maxWidth: 600,
-  },
-  avatar: {
-    backgroundColor: red[500],
+    width: 500,
+    marginTop: theme.spacing(2),
+    marginBot: theme.spacing(2),
   },
 }));
 
-export default ({ name, categories, books }) => {
-  console.log(name);
+export default ({ name, categories, books, id }) => {
   const classes = useStyles();
   const booksState = useSelector((state) => state.books);
-  books = books.map((book) => booksState[book.id].name);
-  console.log(books);
+  books = books.map((book) => booksState[book].title);
   return (
-    <Grid item xs={12} sm={6} className={classes.root}>
-      <Card className={classes.root}>
+    <Grid item xs={12} sm={12} md={12} className={classes.root}>
+      <Card>
         <CardHeader title={name} subheader={categories.join(", ")} />
         <CardContent>
           {books.length ? (
@@ -37,23 +30,18 @@ export default ({ name, categories, books }) => {
               <Typography gutterBottom variant="h5" component="h2">
                 Books:
               </Typography>
-              {/* {books.map((book) => (
+              {books.map((book) => (
                 <Typography gutterBottom variant="h5" component="h2">
                   {book}
                 </Typography>
-              ))} */}
+              ))}
+              <AddReview type="shelf" id={id} />
             </>
           ) : (
             <Typography variant="body2" color="textSecondary" component="p">
               No books yet on this shelf
             </Typography>
           )}
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
         </CardContent>
       </Card>
     </Grid>

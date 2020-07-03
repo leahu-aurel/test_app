@@ -1,10 +1,8 @@
 import { useDispatch } from "react-redux";
 import { setBooks } from "../redux/actions/actionCreators";
-import { useEffect, useState } from "react";
 import { books } from "../data/books";
 
 export default (booksRef) => {
-  const [isFetching, setFetching] = useState(false);
   const dispatch = useDispatch();
   if (!booksRef.length) {
     dispatch(setBooks(books));
@@ -31,6 +29,4 @@ export default (booksRef) => {
   //       });
   //   }
   // }, [dispatch, books]);
-
-  return [isFetching];
 };

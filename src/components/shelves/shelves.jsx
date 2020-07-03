@@ -4,10 +4,10 @@ import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import Shelf from "./shelf";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(6),
@@ -19,16 +19,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     backgroundColor: "black",
   },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-  error: {
-    marginTop: theme.spacing(2),
-  },
 }));
 
 export default () => {
@@ -39,6 +29,15 @@ export default () => {
       <div className={classes.paper}>
         {Object.values(shelves).length ? (
           <>
+            {" "}
+            <Typography variant="h5">
+              <Link
+                style={{ color: "black", textDecoration: "none" }}
+                to="/shelves/create"
+              >
+                Add a new shelf
+              </Link>
+            </Typography>
             {Object.values(shelves).map((shelf) => (
               <Shelf key={shelf.id} {...shelf} />
             ))}
@@ -50,7 +49,10 @@ export default () => {
             </Avatar>
             <Typography variant="h5">
               No shelves yet.{" "}
-              <Link color="inherit" href="/shelves/create">
+              <Link
+                style={{ color: "black", textDecoration: "none" }}
+                to="/shelves/create"
+              >
                 Create your first shelf
               </Link>
             </Typography>

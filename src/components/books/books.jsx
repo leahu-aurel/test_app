@@ -2,34 +2,19 @@ import React from "react";
 import useItems from "../../hooks/useItems";
 import { useSelector } from "react-redux";
 import Book from "./book";
-import { Grid, makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-}));
+import { Grid } from "@material-ui/core";
 
 export default () => {
-  const classes = useStyles();
   const books = useSelector((state) => state.books);
-  const [isFetching] = useItems(books);
+  useItems(books);
 
   return (
     <div>
-      {isFetching || !books ? (
+      {!books ? (
         "Loading "
       ) : (
         <Grid
           container
-          className={classes.root}
           direction="row"
           justify="center"
           alignItems="center"

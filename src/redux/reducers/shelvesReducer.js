@@ -1,16 +1,31 @@
-import { ADD_SHELF, ADD_BOOK_TO_SHELF } from "../actions/actions";
+import {
+  ADD_SHELF,
+  ADD_BOOK_TO_SHELF,
+  ADD_REVIEW_TO_SHELF,
+} from "../actions/actions";
 
-export default (state = {}, { type, shelf, shelf_id, book_id }) => {
+export default (state = {}, { type, shelf, shelf_id, book_id, review }) => {
   switch (type) {
     case ADD_SHELF:
       return { ...state, [shelf.id]: shelf };
-    case ADD_BOOK_TO_SHELF:
-      const { name, categories, books } = state[shelf_id];
+
+    case ADD_REVIEW_TO_SHELF:
+      const { reviews } = state[shelf_id];
       return {
         ...state,
         [shelf_id]: {
-          name,
-          categories,
+          ...state[shelf_id],
+          reviews: [...reviews, review],
+        },
+      };
+
+    case ADD_BOOK_TO_SHELF:
+      const { books } = state[shelf_id];
+
+      return {
+        ...state,
+        [shelf_id]: {
+          ...state[shelf_id],
           books: [...books, book_id],
         },
       };

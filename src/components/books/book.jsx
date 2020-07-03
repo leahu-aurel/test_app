@@ -16,12 +16,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
     margin: theme.spacing(4),
   },
-  rootItem: {
-    display: "flex",
-  },
-  content: {
-    flex: "1 0 auto",
-  },
 }));
 
 export default function RecipeReviewCard(props) {
