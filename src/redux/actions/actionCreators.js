@@ -10,9 +10,9 @@ export const setBooks = (books) => ({
   books,
 });
 
-export const addReviewToBook = (review, id) => ({
+export const addReviewToBook = (review, rate, id) => ({
   type: ADD_BOOK_TO_SHELF,
-  review,
+  review: { review, rate },
   id,
 });
 
@@ -23,6 +23,7 @@ export const addShelf = (name, categories) => ({
     name,
     categories,
     books: [],
+    reviews: [],
   },
 });
 
@@ -32,8 +33,8 @@ export const addBookToShelf = (shelf_id, book_id) => ({
   book_id,
 });
 
-export const addReviewToShelf = (review, shelf_id) => ({
+export const addReviewToShelf = (review, rate, shelf_id) => ({
   type: ADD_REVIEW_TO_SHELF,
-  review,
+  review: { review, rate },
   shelf_id,
 });

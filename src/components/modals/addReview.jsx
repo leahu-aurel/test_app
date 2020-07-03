@@ -12,7 +12,13 @@ import useReview from "../../hooks/useReview";
 
 export default ({ type, id }) => {
   const [open, handleOpen, handleClose] = useModal();
-  const [review, handleReviewChange, handleSubmit] = useReview(type, id);
+  const [
+    review,
+    handleReviewChange,
+    rate,
+    handleRateChange,
+    handleSubmit,
+  ] = useReview(type, id);
 
   return (
     <>
@@ -45,12 +51,31 @@ export default ({ type, id }) => {
                   maxLength: 280,
                 }}
               />
+              <TextField
+                fullWidth
+                type="number"
+                value={rate}
+                onChange={handleRateChange}
+                InputProps={{
+                  inputProps: {
+                    max: 5,
+                    min: 0,
+                  },
+                }}
+                label="Rate from 0 to 5:"
+              />
             </DialogContent>
             <DialogActions>
               <Button color="primary" onClick={handleClose}>
                 Cancel
               </Button>
-              <Button color="primary" onClick={handleSubmit}>
+              <Button
+                color="primary"
+                onClick={() => {
+                  handleSubmit();
+                  handleClose();
+                }}
+              >
                 Submit
               </Button>
             </DialogActions>

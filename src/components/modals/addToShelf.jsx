@@ -62,7 +62,13 @@ export default ({ id, category }) => {
                   <Button color="primary" onClick={handleClose}>
                     Cancel
                   </Button>
-                  <Button color="primary" onClick={handleSubmit}>
+                  <Button
+                    color="primary"
+                    onClick={() => {
+                      handleSubmit();
+                      handleClose();
+                    }}
+                  >
                     Submit
                   </Button>
                 </DialogActions>

@@ -13,17 +13,27 @@ export default (type, id) => {
     setReview(e.target.value);
   };
 
+  const [rate, setRate] = useState(0);
+  const handleRateChange = (e) => {
+    const { value } = e.target;
+    console.log(value);
+    if (!(value < 0 || value > 5)) {
+      console.log(value);
+      setRate(value);
+    }
+  };
+
   const handleSubmit = () => {
-    if (review) {
+    if (review && rate) {
       if (type === "book") {
-        dispatch(addReviewToBook(review, id));
+        dispatch(addReviewToBook(review, rate, id));
       } else {
-        dispatch(addReviewToShelf(review, id));
+        dispatch(addReviewToShelf(review, rate, id));
       }
       alert("Added");
     } else {
-      alert("No review to add");
+      alert("Not enough data to add the review");
     }
   };
-  return [review, handleReviewChange, handleSubmit];
+  return [review, handleReviewChange, rate, handleRateChange, handleSubmit];
 };
