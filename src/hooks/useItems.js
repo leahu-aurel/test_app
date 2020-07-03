@@ -4,7 +4,7 @@ import { books } from "../data/books";
 
 export default (booksRef) => {
   const dispatch = useDispatch();
-  if (!booksRef.length) {
+  if (!Object.values(booksRef).length) {
     dispatch(setBooks(books));
   }
   // Fetching alternative

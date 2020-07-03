@@ -13,13 +13,7 @@ export default () => {
       {!books ? (
         "Loading "
       ) : (
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-          spacing={2}
-        >
+        <Grid container direction="row" justify="center" alignItems="center">
           {Object.values(books).map((item) => (
             <Book key={item.id} {...item} />
           ))}

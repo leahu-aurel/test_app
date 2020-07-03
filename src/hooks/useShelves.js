@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 export default (id, category) => {
   let shelves = useSelector((state) => state.shelves);
-  console.log(shelves);
   const filteredShelves = Object.values(shelves).filter(
     ({ books, categories }) => {
       if (books.includes(id)) {
@@ -15,6 +14,5 @@ export default (id, category) => {
       }
     }
   );
-  console.log(filteredShelves);
   return filteredShelves;
 };

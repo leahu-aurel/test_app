@@ -7,7 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import AddReview from "../modals/addReview";
-export const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "center",
     width: 500,
@@ -19,7 +20,10 @@ export const useStyles = makeStyles((theme) => ({
 export default ({ name, categories, books, id }) => {
   const classes = useStyles();
   const booksState = useSelector((state) => state.books);
-  books = books.map((book) => booksState[book].title);
+  books = books.map((book) => ({
+    id: book,
+    title: booksState[book].title,
+  }));
   return (
     <Grid item xs={12} sm={12} md={12} className={classes.root}>
       <Card>
@@ -31,8 +35,13 @@ export default ({ name, categories, books, id }) => {
                 Books:
               </Typography>
               {books.map((book) => (
-                <Typography gutterBottom variant="h5" component="h2">
-                  {book}
+                <Typography
+                  key={book.id}
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                >
+                  {book.title}
                 </Typography>
               ))}
               <AddReview type="shelf" id={id} />

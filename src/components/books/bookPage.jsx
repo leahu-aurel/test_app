@@ -28,8 +28,6 @@ export default () => {
   const { id } = useParams();
   const classes = useStyles();
   const book = useSelector((state) => state.books)[id];
-  const shelves = useSelector((state) => state.shelves);
-  console.log(shelves);
 
   const { image, title, author, description, category, pages } = book;
 

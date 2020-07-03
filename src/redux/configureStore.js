@@ -1,4 +1,10 @@
 import { createStore } from "redux";
 import root from "./reducers/rootReducer";
 
-export default createStore(root);
+let initialState = JSON.parse(localStorage.getItem("state")) || {};
+
+const store = createStore(root, initialState);
+store.subscribe(() =>
+  localStorage.setItem("state", JSON.stringify(store.getState()))
+);
+export default store;

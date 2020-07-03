@@ -23,11 +23,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default () => {
   const classes = useStyles();
-  const shelves = useSelector((state) => state.shelves);
+  const shelves = Object.values(useSelector((state) => state.shelves));
   return (
     <Container component="main" maxWidth="sm">
       <div className={classes.paper}>
-        {Object.values(shelves).length ? (
+        {shelves.length ? (
           <>
             {" "}
             <Typography variant="h5">
@@ -38,7 +38,7 @@ export default () => {
                 Add a new shelf
               </Link>
             </Typography>
-            {Object.values(shelves).map((shelf) => (
+            {shelves.map((shelf) => (
               <Shelf key={shelf.id} {...shelf} />
             ))}
           </>
