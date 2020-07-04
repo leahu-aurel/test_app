@@ -5,6 +5,7 @@ import {
   ADD_BOOK_TO_SHELF,
   ADD_REVIEW_TO_SHELF,
   ADD_REVIEW_TO_BOOK,
+  SET_MODE,
 } from "./actions";
 
 export const setBooks = (books) => ({
@@ -29,6 +30,10 @@ export const addShelf = (name, categories) => ({
     books: [],
     reviews: [],
   },
+});
+
+export const setMode = () => ({
+  type: SET_MODE,
 });
 
 export const addBookToShelf = (shelf_id, book_id) => ({

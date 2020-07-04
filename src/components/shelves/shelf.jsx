@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "center",
     width: 500,
-    marginTop: theme.spacing(2),
-    marginBot: theme.spacing(2),
+    margin: theme.spacing(2),
+    boxShadow: "0px 0px 5px 5px rgba(0,0,0,0.2)",
   },
 }));
 

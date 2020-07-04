@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     height: 400,
   },
   root: {
-    maxWidth: 345,
-    margin: theme.spacing(4),
+    maxWidth: 315,
+    margin: theme.spacing(2),
   },
 }));
 

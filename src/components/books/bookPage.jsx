@@ -9,6 +9,7 @@ import {
   Typography,
   CardActionArea,
   CardMedia,
+  Box,
 } from "@material-ui/core";
 import AddToShelf from "../modals/addToShelf";
 import AddReview from "../modals/addReview";
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     margin: "20px auto",
     alignContent: "center",
+    alignSelf: "center",
     maxWidth: 350,
   },
   media: {
@@ -34,36 +36,38 @@ export default () => {
   const { image, title, author, description, category, pages, reviews } = book;
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia className={classes.media} image={image} />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
-            {author}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
-            Category:
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
-            {category}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
-            Pages: {pages}
-          </Typography>
-        </CardContent>
-        <Reviews reviews={reviews} />
-      </CardActionArea>
+    <Box m={2}>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia className={classes.media} image={image} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              {author}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {description}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              Category:
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              {category}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              Pages: {pages}
+            </Typography>
+          </CardContent>
+          <Reviews reviews={reviews} />
+        </CardActionArea>
 
-      <CardActions disableSpacing>
-        <AddToShelf id={id} category={category} />
-        <AddReview type="book" id={id} />
-      </CardActions>
-    </Card>
+        <CardActions disableSpacing>
+          <AddToShelf id={id} category={category} />
+          <AddReview type="book" id={id} />
+        </CardActions>
+      </Card>
+    </Box>
   );
 };

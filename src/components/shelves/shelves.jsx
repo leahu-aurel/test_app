@@ -1,7 +1,5 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
 
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
@@ -43,20 +41,15 @@ export default () => {
             ))}
           </>
         ) : (
-          <>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography variant="h5">
-              No shelves yet.{" "}
-              <Link
-                style={{ color: "black", textDecoration: "none" }}
-                to="/shelves/create"
-              >
-                Create your first shelf
-              </Link>
-            </Typography>
-          </>
+          <Typography variant="h5">
+            No shelves yet.{" "}
+            <Link
+              style={{ color: "black", textDecoration: "none" }}
+              to="/shelves/create"
+            >
+              Create your first shelf
+            </Link>
+          </Typography>
         )}
       </div>
     </Container>
