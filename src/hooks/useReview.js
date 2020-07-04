@@ -13,12 +13,10 @@ export default (type, id) => {
     setReview(e.target.value);
   };
 
-  const [rate, setRate] = useState(0);
+  const [rate, setRate] = useState(1);
   const handleRateChange = (e) => {
     const { value } = e.target;
-    console.log(value);
-    if (!(value < 0 || value > 5)) {
-      console.log(value);
+    if (!(value < 1 || value > 5)) {
       setRate(value);
     }
   };
@@ -26,7 +24,6 @@ export default (type, id) => {
   const handleSubmit = () => {
     if (review && rate) {
       if (type === "book") {
-        console.log(type);
         dispatch(addReviewToBook(review, rate, id));
       } else {
         dispatch(addReviewToShelf(review, rate, id));

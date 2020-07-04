@@ -12,9 +12,11 @@ import {
 } from "@material-ui/core";
 import AddToShelf from "../modals/addToShelf";
 import AddReview from "../modals/addReview";
+import Reviews from "../reviews/reviews";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    textAlign: "center",
     margin: "20px auto",
     alignContent: "center",
     maxWidth: 350,
@@ -29,7 +31,7 @@ export default () => {
   const classes = useStyles();
   const book = useSelector((state) => state.books)[id];
 
-  const { image, title, author, description, category, pages } = book;
+  const { image, title, author, description, category, pages, reviews } = book;
 
   return (
     <Card className={classes.root}>
@@ -55,7 +57,9 @@ export default () => {
             Pages: {pages}
           </Typography>
         </CardContent>
+        <Reviews reviews={reviews} />
       </CardActionArea>
+
       <CardActions disableSpacing>
         <AddToShelf id={id} category={category} />
         <AddReview type="book" id={id} />

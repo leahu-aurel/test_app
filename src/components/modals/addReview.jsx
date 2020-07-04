@@ -59,10 +59,10 @@ export default ({ type, id }) => {
                 InputProps={{
                   inputProps: {
                     max: 5,
-                    min: 0,
+                    min: 1,
                   },
                 }}
-                label="Rate from 0 to 5:"
+                label="Rate from 1 to 5:"
               />
             </DialogContent>
             <DialogActions>
