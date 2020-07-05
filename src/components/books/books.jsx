@@ -8,7 +8,7 @@ export default () => {
   const books = useSelector((state) => state.books);
   useItems(books);
   return (
-    <div>
+    <>
       {!books ? (
         "Loading "
       ) : (
@@ -18,6 +18,6 @@ export default () => {
           ))}
         </Grid>
       )}
-    </div>
+    </>
   );
 };

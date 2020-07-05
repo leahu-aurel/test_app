@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   shelvesButton: {
     flexGrow: 1,
   },
-  appBar: { backgroundColor: "white", color: "black" },
 }));
 
 export default () => {

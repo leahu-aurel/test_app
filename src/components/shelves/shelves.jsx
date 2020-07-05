@@ -1,11 +1,11 @@
 import React from "react";
 
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import Shelf from "./shelf";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(6),
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default () => {
+  const history = useHistory();
   const classes = useStyles();
   const shelves = Object.values(useSelector((state) => state.shelves));
   return (
@@ -28,28 +29,17 @@ export default () => {
         {shelves.length ? (
           <>
             {" "}
-            <Typography variant="h5">
-              <Link
-                style={{ color: "black", textDecoration: "none" }}
-                to="/shelves/create"
-              >
-                Add a new shelf
-              </Link>
-            </Typography>
+            <Button onClick={() => history.push("/shelves/create")}>
+              Add a new shelf
+            </Button>
             {shelves.map((shelf) => (
               <Shelf key={shelf.id} {...shelf} />
             ))}
           </>
         ) : (
-          <Typography variant="h5">
-            No shelves yet.{" "}
-            <Link
-              style={{ color: "black", textDecoration: "none" }}
-              to="/shelves/create"
-            >
-              Create your first shelf
-            </Link>
-          </Typography>
+          <Button onClick={() => history.push("/shelves/create")}>
+            No shelves yet. Create your first shelf
+          </Button>
         )}
       </div>
     </Container>

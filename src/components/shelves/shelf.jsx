@@ -4,10 +4,10 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import AddReview from "../modals/addReview";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Reviews from "../reviews/reviews";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default ({ name, categories, books, id, reviews }) => {
+  const history = useHistory();
   const classes = useStyles();
   const booksState = useSelector((state) => state.books);
   books = books.map((book) => ({
@@ -43,12 +44,12 @@ export default ({ name, categories, books, id, reviews }) => {
                   variant="h5"
                   component="h2"
                 >
-                  <Link
-                    style={{ color: "black", textDecoration: "none" }}
-                    to={`/${book.id}`}
+                  <Button
+                    key={book.id}
+                    onClick={() => history.push(`/${book.id}`)}
                   >
                     {book.title}
-                  </Link>
+                  </Button>
                 </Typography>
               ))}
               <Reviews reviews={reviews} />

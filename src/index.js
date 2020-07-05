@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import "./index.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import WrapperComponent from "./wrapperComponent";
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
+    <WrapperComponent />{" "}
   </Provider>,
   document.getElementById("root")
 );

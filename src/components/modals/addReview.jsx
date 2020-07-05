@@ -40,7 +40,6 @@ export default ({ type, id }) => {
               <TextField
                 autoFocus
                 margin="dense"
-                id="idea"
                 label="Your review:"
                 fullWidth
                 required
