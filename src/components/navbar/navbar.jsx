@@ -30,18 +30,12 @@ export default () => {
   return (
     <AppBar className={classes.appBar} position="static">
       <Toolbar>
-        <Button
-          onClick={() => pushTo("/books")}
-          color="inherit"
-          className={classes.menuButton}
-        >
+        <Button onClick={() => pushTo("/books")} className={classes.menuButton}>
           Books
         </Button>
-        <Button onClick={() => pushTo("/shelves")} color="inherit">
-          Shelves
-        </Button>
+        <Button onClick={() => pushTo("/shelves")}>Shelves</Button>
         <Typography className={classes.shelvesButton} />
-        <IconButton style={{ color: "black" }} onClick={toggleChecked}>
+        <IconButton onClick={toggleChecked}>
           {checked ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
       </Toolbar>
